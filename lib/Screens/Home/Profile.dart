@@ -143,7 +143,32 @@ class _ProfileState extends State<Profile> {
                         Text("Change Language",style: TextStyle(
                           color: Colors.black54,
                           fontSize: 15
-                        ),)
+                        ),),
+                        SizedBox(width: 20,),
+                       TextButton(onPressed: (){}, child:   Container(
+                         decoration: BoxDecoration(
+                           border: Border.all(color: Colors.pinkAccent,width: 1,style: BorderStyle.solid,strokeAlign: BorderSide.strokeAlignOutside),
+                           borderRadius: BorderRadius.all(Radius.circular(5))
+                         ),
+                         child: Padding(
+                           padding: const EdgeInsets.all(8.0),
+                           child: Text("Hindi",style: TextStyle(
+                               color: Colors.black54
+                           ),),
+                         ),
+                       )),
+                        TextButton(onPressed: (){}, child:   Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.pinkAccent,width: 1,style: BorderStyle.solid,strokeAlign: BorderSide.strokeAlignOutside),
+                              borderRadius: BorderRadius.all(Radius.circular(5))
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text("English",style: TextStyle(
+                                color: Colors.black54
+                            ),),
+                          ),
+                        )),
                       ],
                     ),
                   ),
