@@ -146,10 +146,10 @@ class _ProfileState extends State<Profile> {
                         ),),
                         SizedBox(width: 20,),
                        TextButton(onPressed: (){}, child:   Container(
-                         decoration: BoxDecoration(
+                         /*decoration: BoxDecoration(
                            border: Border.all(color: Colors.pinkAccent,width: 1,style: BorderStyle.solid,strokeAlign: BorderSide.strokeAlignOutside),
                            borderRadius: BorderRadius.all(Radius.circular(5))
-                         ),
+                         ),*/
                          child: Padding(
                            padding: const EdgeInsets.all(8.0),
                            child: Text("Hindi",style: TextStyle(
@@ -158,10 +158,10 @@ class _ProfileState extends State<Profile> {
                          ),
                        )),
                         TextButton(onPressed: (){}, child:   Container(
-                          decoration: BoxDecoration(
+                         /* decoration: BoxDecoration(
                               border: Border.all(color: Colors.pinkAccent,width: 1,style: BorderStyle.solid,strokeAlign: BorderSide.strokeAlignOutside),
                               borderRadius: BorderRadius.all(Radius.circular(5))
-                          ),
+                          ),*/
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text("English",style: TextStyle(
