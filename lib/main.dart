@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
         useMaterial3: true,
       ),
-      home: const Search(),
+      home: const Profile(),
       debugShowCheckedModeBanner: false,
     );
   }

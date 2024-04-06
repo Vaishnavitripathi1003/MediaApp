@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mydiary/Screens/Home/Profile.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});
@@ -34,7 +35,15 @@ class _SearchState extends State<Search> {
                           padding: EdgeInsets.only(top: screenHeight * 0.07,right:screenWidth*0.02),
                           child: Container(
                             alignment: Alignment.topRight,
-                            child: Icon(Icons.cancel,color: Colors.white,),
+                            child:  GestureDetector(
+                              onTap: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => Profile()),);
+                              },
+                              child:Icon(Icons.cancel,color: Colors.white,),
+
+                            ),
                           ),
                         ),
                         SizedBox(

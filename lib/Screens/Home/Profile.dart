@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'Search.dart';
+
 class Profile extends StatefulWidget {
   const Profile({Key? key});
 
@@ -55,10 +57,18 @@ class _ProfileState extends State<Profile> {
                           ),
                           Container(
                             alignment: Alignment.bottomCenter,
-                            child: CircleAvatar(
-                              child: Icon(
-                                Icons.person
-                              ),
+                            child:
+                            GestureDetector(
+                              onTap: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => Search()),);
+                              },
+                              child: CircleAvatar(
+                                child: Icon(
+                                    Icons.person
+                                ),
+                            ),
                             ),
                           ),
                           Text("Login",style: TextStyle(
