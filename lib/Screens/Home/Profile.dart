@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mydiary/Screens/DashBorad/dashboard.dart';
+
+import 'Search.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key});
@@ -47,7 +50,17 @@ class _ProfileState extends State<Profile> {
                             padding: EdgeInsets.only(top: screenHeight * 0.07,right:screenWidth*0.02),
                             child: Container(
                               alignment: Alignment.topRight,
-                              child: Icon(Icons.cancel,color: Colors.white,),
+                              child:GestureDetector(
+                                child: Icon(
+                                  Icons.cancel,
+                                  color: Colors.white,
+                                ),
+                                onTap: (){
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => Dashboard()),);
+                                },
+                              ),
                             ),
                           ),
                           SizedBox(
@@ -55,10 +68,18 @@ class _ProfileState extends State<Profile> {
                           ),
                           Container(
                             alignment: Alignment.bottomCenter,
-                            child: CircleAvatar(
-                              child: Icon(
-                                Icons.person
-                              ),
+                            child:
+                            GestureDetector(
+                              onTap: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => Search()),);
+                              },
+                              child: CircleAvatar(
+                                child: Icon(
+                                    Icons.person
+                                ),
+                            ),
                             ),
                           ),
                           Text("Login",style: TextStyle(
@@ -143,7 +164,32 @@ class _ProfileState extends State<Profile> {
                         Text("Change Language",style: TextStyle(
                           color: Colors.black54,
                           fontSize: 15
-                        ),)
+                        ),),
+                        SizedBox(width: 20,),
+                       TextButton(onPressed: (){}, child:   Container(
+                         /*decoration: BoxDecoration(
+                           border: Border.all(color: Colors.pinkAccent,width: 1,style: BorderStyle.solid,strokeAlign: BorderSide.strokeAlignOutside),
+                           borderRadius: BorderRadius.all(Radius.circular(5))
+                         ),*/
+                         child: Padding(
+                           padding: const EdgeInsets.all(8.0),
+                           child: Text("Hindi",style: TextStyle(
+                               color: Colors.black54
+                           ),),
+                         ),
+                       )),
+                        TextButton(onPressed: (){}, child:   Container(
+                         /* decoration: BoxDecoration(
+                              border: Border.all(color: Colors.pinkAccent,width: 1,style: BorderStyle.solid,strokeAlign: BorderSide.strokeAlignOutside),
+                              borderRadius: BorderRadius.all(Radius.circular(5))
+                          ),*/
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text("English",style: TextStyle(
+                                color: Colors.black54
+                            ),),
+                          ),
+                        )),
                       ],
                     ),
                   ),
