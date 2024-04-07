@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mydiary/Screens/DashBorad/dashboard.dart';
 
 import 'Search.dart';
 
@@ -49,7 +50,17 @@ class _ProfileState extends State<Profile> {
                             padding: EdgeInsets.only(top: screenHeight * 0.07,right:screenWidth*0.02),
                             child: Container(
                               alignment: Alignment.topRight,
-                              child: Icon(Icons.cancel,color: Colors.white,),
+                              child:GestureDetector(
+                                child: Icon(
+                                  Icons.cancel,
+                                  color: Colors.white,
+                                ),
+                                onTap: (){
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => Dashboard()),);
+                                },
+                              ),
                             ),
                           ),
                           SizedBox(
