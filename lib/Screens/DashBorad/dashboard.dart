@@ -74,7 +74,7 @@ class _DashboardState extends State<Dashboard>
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: Colors.pink,
+          backgroundColor: Colors.blue,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

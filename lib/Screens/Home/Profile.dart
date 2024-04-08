@@ -41,7 +41,7 @@ class _ProfileState extends State<Profile> {
                         bottomLeft: Radius.circular(30), // Adjust as needed
                         bottomRight: Radius.circular(30), // Adjust as needed
                       ),
-                      color: Colors.pink,
+                      color: Colors.blue,
                     ),
 
                       child: Column(

@@ -41,7 +41,7 @@ class _SearchState extends State<Search> {
       body: Stack(
         children: [
           Container(
-            color: Colors.pink,
+            color: Colors.blue,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.max,
@@ -51,7 +51,7 @@ class _SearchState extends State<Search> {
                   child:   Container(
                     width: screenWidth,
                     height: screenHeight*0.25,
-                    color: Colors.pink,
+                    color: Colors.blue,
                     child: Column(
                       children: [
                         Padding(
