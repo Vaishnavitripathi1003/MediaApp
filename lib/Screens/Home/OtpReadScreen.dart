@@ -61,7 +61,7 @@ class _OtpReadScreenState extends State<OtpReadScreen> {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    return Scaffold(
+    return WillPopScope(child:  Scaffold(
       body: Stack(
         children: [
           Container(
@@ -246,7 +246,7 @@ class _OtpReadScreenState extends State<OtpReadScreen> {
                           inputFormatters: <TextInputFormatter>[
                             FilteringTextInputFormatter.digitsOnly
                           ],
-                              onChanged: (value) {
+                          onChanged: (value) {
                             if (value.length == 1) {
                               Navigator.push(
                                 context,
@@ -264,6 +264,14 @@ class _OtpReadScreenState extends State<OtpReadScreen> {
           )
         ],
       ),
-    );
+    ), onWillPop: ()async{
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Dashboard()),
+      );
+      return false;
+    });
+
+
   }
 }
