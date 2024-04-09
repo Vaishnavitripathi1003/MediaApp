@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mydiary/Screens/Home/Profile.dart';
 
@@ -15,13 +16,13 @@ class _DashboardState extends State<Dashboard>
   final List<String> tabTitles = [
     "Home",
     "Latest",
-    "News",
-    "Elections",
-    "Sports",
-    "entertainment",
-    "Technology",
+    "Saved",
+    "Drafts",
+    "Network",
+    "notifications",
+   /* "Technology",
     "Ordinary",
-    "business"
+    "business"*/
   ];
   final List<String> Videos = [
     "https://www.pexels.com/video/wood-sea-landscape-nature-3971351/",
@@ -57,6 +58,8 @@ class _DashboardState extends State<Dashboard>
     "https://www.pexels.com/photo/person-holding-microphone-33779/",
   ];
   late TabController _tabcontroller;
+  int _currentIndex = 0;
+
   //late TabController _tabcontroller;
   @override
   void initState() {
@@ -74,14 +77,14 @@ class _DashboardState extends State<Dashboard>
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: Colors.pink,
+          backgroundColor: Colors.blue,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'For You',
+                  'Ankahe Alfaz',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 25,
@@ -97,23 +100,24 @@ class _DashboardState extends State<Dashboard>
                       Icons.search,
                       color: Colors.white,
                     ),
-                    onTap: (){
+                    onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Search()),);
+                        MaterialPageRoute(builder: (context) => Search()),
+                      );
                     },
                   ),
-
                   SizedBox(width: 20),
                   GestureDetector(
                     child: Icon(
                       Icons.menu,
                       color: Colors.white,
                     ),
-                    onTap: (){
+                    onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Profile()),);
+                        MaterialPageRoute(builder: (context) => Profile()),
+                      );
                     },
                   ),
                 ],
@@ -129,62 +133,228 @@ class _DashboardState extends State<Dashboard>
                 text: title,
               );
             }).toList(),
-            isScrollable: true, // Add TabBar here
+            isScrollable: true,
+            onTap: (index) {
+              setState(() {
+                _tabcontroller.index = index;
+              });
+            }, // Add TabBar here
           ),
         ),
-        body:
-        TabBarView(
+        body: TabBarView(
           // This is where you define the content for each tab
           children: List.generate(tabTitles.length, (index) {
-            if(index == 0 && _tabcontroller.index == 0){
-              return Center(
-                child: Text("jfhsdkgjh",
-                  style: TextStyle(fontSize: 20),
-                ),
-              );
+            if (_tabcontroller.index == 0 && _currentIndex == 0) {
+              return methodForView(context);
             }
-            else{
+
+            if (_currentIndex == 2) {
+              return methodForAddPoem(context);
+            } else {
               return Container(
                 color: Colors.black26,
               );
             }
-
           }).toList(),
         ),
-
-
-
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
+          unselectedItemColor: Colors.blue,
+          selectedItemColor: Colors.deepOrangeAccent,
+          currentIndex: _currentIndex,
+          // Current index for bottom navigation
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index; // Update the current index
+            });
+          },
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.business),
-              label: 'Business',
-            ),
-            BottomNavigationBarItem(
               icon: Icon(Icons.headphones_rounded),
               label: 'Hear',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.quiz),
-              label: 'Quiz',
+              icon: Icon(Icons.add_circle_sharp),
+              label: 'Add',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.play_circle_filled),
-              label: 'Shorts',
+              icon: Icon(CupertinoIcons.person_circle_fill),
+              label: 'Profile',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.business_center),
-              label: 'exposure',
+              icon: Icon(Icons.settings),
+              label: 'setting',
             ),
           ],
         ),
-
       ),
     );
+  }
+
+  Widget methodForView(BuildContext context) {
+    return  Container(
+      child: Column(
+        children: [
+          Expanded(child:  ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: imageslst.length,
+            itemBuilder: (context, index) {
+              return Container(
+                padding: EdgeInsets.only(top: 5,left: 5),
+                child: Column(
+
+                  children: [
+                    AnimatedContainer(
+                      duration: Duration(seconds: 1),
+                      curve: Curves.bounceInOut,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.black12,
+                          width: 3.0,
+                        ),
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.white,
+                            Colors.blue,
+                            Colors.white,
+                            Colors.orange,
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                        ),
+                      ),
+
+                        child: CircleAvatar(
+                          backgroundImage: AssetImage("images/newlogo.jpeg"),
+                          radius: 40,
+                        ),
+
+                    ),
+                    Text("Person$index"),
+                  ],
+                ),
+              );
+            },
+          ),flex: 1,),
+       Expanded(child: ListView.builder(
+         scrollDirection: Axis.vertical,
+         itemCount: 5,
+         itemBuilder: (context, index) {
+           return Container(
+             width: double.infinity,
+             child: Card(
+               color: Colors.black12,
+               child: Column(
+                 mainAxisAlignment: MainAxisAlignment.start,
+                 children: [
+                   Image.asset("images/imagesss.jpg"),
+                   Container(
+                     color: Colors.white,
+                     height: 30,
+                     child: Padding(
+                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                       child: Row(
+                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                         children: [
+                           Container(
+                             child: Icon(
+                               CupertinoIcons.heart,
+                               color: Colors.deepOrangeAccent,
+                             ),
+                           ),
+                           Row(
+                             children: [
+                               Icon(
+                                 Icons.share,
+                                 color: Colors.deepOrangeAccent,
+                               ),
+                               SizedBox(
+                                 width: 20,
+                               ),
+                               Icon(
+                                 Icons.save_alt,
+                                 color: Colors.deepOrangeAccent,
+                               )
+                             ],
+                           ),
+                         ],
+                       ),
+                     ),
+                   )
+                 ],
+               ),
+             ),
+           );
+         },
+       ),flex: 4,)
+
+
+        ],
+      ),
+    );
+
+
+  }
+
+  Widget methodForAddPoem(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      width: double.infinity,
+      height: double.infinity,
+      child: Card(
+        color: Colors.black12,
+        child: Container(
+          color: Colors.white,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Container(
+                width: double.infinity,
+                height:200,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("images/imagesss.jpg"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child:  Padding(
+                  padding: const EdgeInsets.all(0),
+                  child: TextField(
+                    maxLines: null, // Allow multiple lines of text
+                    expands: true, // Allow the TextField to expand vertically
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Enter your poem',
+                      hintStyle: TextStyle(color: Colors.black12),
+                    ),
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
+              ),
+              Container(
+                child: Row(
+                  children: [
+                    ElevatedButton(onPressed: (){}, child: Text("Draft",style: TextStyle(color: Colors.white),),style: ButtonStyle(
+                   backgroundColor: MaterialStateProperty.all<Color>(Colors.lightBlueAccent),
+              ),),
+                    SizedBox(width: 220,),
+                    ElevatedButton(onPressed: (){}, child: Text("Post",style: TextStyle(color: Colors.white),),style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.lightBlueAccent),
+                    ),)
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+
   }
 }

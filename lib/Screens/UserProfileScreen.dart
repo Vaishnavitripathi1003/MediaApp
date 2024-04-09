@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mydiary/Screens/DashBorad/dashboard.dart';
+import 'package:mydiary/Screens/Home/OtpReadScreen.dart';
 
 import 'Home/Search.dart';
 
@@ -12,11 +13,14 @@ class UserProfile extends StatefulWidget {
 }
 
 class _UserProfileState extends State<UserProfile> {
+   TextEditingController textEditingContoller=new TextEditingController();
+   bool isMobileValid = false;
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
+    var containerColor = isMobileValid ? Colors.green : Colors.black26;
     return Scaffold(
       /* appBar: AppBar(
         backgroundColor: Colors.pink,
@@ -24,7 +28,7 @@ class _UserProfileState extends State<UserProfile> {
       body: Stack(
         children: [
           Container(
-            color: Colors.pink,
+            color: Colors.lightBlue,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.max,
@@ -33,16 +37,6 @@ class _UserProfileState extends State<UserProfile> {
                   padding: EdgeInsets.symmetric(horizontal: 0),
                   child: Container(
                     width: screenWidth,
-/*
-                    decoration: BoxDecoration
-                      (
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(30), // Adjust as needed
-                        bottomRight: Radius.circular(30), // Adjust as needed
-                      ),
-                      color: Colors.pink,
-                    ),*/
-
                     child: Column(
                       children: [
                         Padding(
@@ -85,14 +79,12 @@ class _UserProfileState extends State<UserProfile> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(
-                              child: CircleAvatar(
-                                child: Icon(
-                                  Icons.person,
-                                  size: 20,
-                                ),
-                              ),
-                            ),
+
+
+                            CircleAvatar(
+                                radius: 50, // Adjust the radius as needed
+                                backgroundImage: AssetImage("images/newlogo.jpeg"),  ),
+
                             SizedBox(
                               width: 20,
                             ),
@@ -143,6 +135,7 @@ class _UserProfileState extends State<UserProfile> {
                         left: screenWidth * 0.05,
                         right: screenWidth * 0.05),
                     child: TextField(
+                      controller:textEditingContoller,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5)),
@@ -153,7 +146,8 @@ class _UserProfileState extends State<UserProfile> {
                       keyboardType: TextInputType.number,
                       inputFormatters: <TextInputFormatter>[
                         FilteringTextInputFormatter.digitsOnly
-                      ], // Only numbers can be entered
+                      ],
+                      onChanged: change,// Only numbers can be entered
                     ),
                   ),
 
@@ -168,20 +162,31 @@ class _UserProfileState extends State<UserProfile> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(
-                                color: Colors.black26,
+                                color: containerColor,
                                 width: 2,
                                 style: BorderStyle.solid,
-                                strokeAlign: BorderSide.strokeAlignOutside),color: Colors.black26,),   // Border from all sides)
+                                strokeAlign: BorderSide.strokeAlignOutside),color: containerColor),   // Border from all sides)
 
-                        child:Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("OTP",style: TextStyle(
-                                fontSize: 20
-                            ),
-                            textAlign: TextAlign.center,),
-                          ],
+                        child:
+
+                        GestureDetector(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("OTP",style: TextStyle(
+                                  fontSize: 20
+                              ),
+                                textAlign: TextAlign.center,),
+                            ],
+                          ) ,
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => OtpReadScreen()),
+                            );
+                          },
                         )
+
                       ),
 
                   ),
@@ -246,4 +251,22 @@ class _UserProfileState extends State<UserProfile> {
       ),
     );
   }
-}
+
+  void change(String value) {
+    if(textEditingContoller.text.isEmpty || textEditingContoller.text.length<10)
+    {
+
+      setState(() {
+        isMobileValid = false;
+      });
+    }
+    else
+      {
+        setState(() {
+          isMobileValid = true;
+
+        });
+      }
+      }
+  }
+

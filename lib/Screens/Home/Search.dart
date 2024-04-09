@@ -33,6 +33,7 @@ class _SearchState extends State<Search> {
     "https://www.pexels.com/photo/woman-talking-video-1426044/",
     "https://www.pexels.com/photo/person-holding-microphone-33779/",
   ];
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -41,28 +42,31 @@ class _SearchState extends State<Search> {
       body: Stack(
         children: [
           Container(
-            color: Colors.pink,
+            color: Colors.blue,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 0),
-                  child:   Container(
+                  child: Container(
                     width: screenWidth,
-                    height: screenHeight*0.25,
-                    color: Colors.pink,
+                    height: screenHeight * 0.25,
+                    color: Colors.blue,
                     child: Column(
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(top: screenHeight * 0.07, right: screenWidth * 0.02),
+                          padding: EdgeInsets.only(
+                              top: screenHeight * 0.07,
+                              right: screenWidth * 0.02),
                           child: Container(
                             alignment: Alignment.topRight,
                             child: GestureDetector(
                               onTap: () {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => Dashboard()),
+                                  MaterialPageRoute(
+                                      builder: (context) => Dashboard()),
                                 );
                               },
                               child: Icon(
@@ -76,9 +80,12 @@ class _SearchState extends State<Search> {
                           height: screenHeight * 0.015,
                         ),
                         Padding(
-                          padding: EdgeInsets.only(top: screenHeight*0.03,left: screenWidth*0.06,right:screenWidth*0.06 ),
+                          padding: EdgeInsets.only(
+                              top: screenHeight * 0.03,
+                              left: screenWidth * 0.06,
+                              right: screenWidth * 0.06),
                           child: Container(
-                            height: screenHeight*0.06,
+                            height: screenHeight * 0.06,
                             child: TextField(
                               decoration: InputDecoration(
                                 hintText: 'Search',
@@ -102,7 +109,6 @@ class _SearchState extends State<Search> {
                       ],
                     ),
                   ),
-
                 ),
               ],
             ),
@@ -111,6 +117,7 @@ class _SearchState extends State<Search> {
             padding: EdgeInsets.only(top: screenHeight * 0.25),
             child: Container(
               width: double.infinity,
+              height: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(30), // Adjust as needed
@@ -118,105 +125,77 @@ class _SearchState extends State<Search> {
                 ),
                 color: Colors.white,
               ),
-              child:
-
-              SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child:Column(
-                  children: [
-                    Container(
-                      height: screenHeight*0.15,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(30), // Adjust as needed
-                          topLeft: Radius.circular(30), // Adjust as needed
-                        ),
-                        color: Colors.white,
+              child: Column(
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(top: 15, left: 5),
+                    height: screenHeight * 0.2,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(30), // Adjust as needed
+                        topLeft: Radius.circular(30), // Adjust as needed
                       ),
+                      color: Colors.white,
                     ),
-                    Divider(
-                      color: Colors.black12,
-                      thickness: 6,
-                    ),
-                    Container(
-                      height: screenHeight*0.15,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(30), // Adjust as needed
-                          topLeft: Radius.circular(30), // Adjust as needed
-                        ),
-                        color: Colors.white,
-
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding:  EdgeInsets.only(left: 8),
-                            child: Container(
-                              child: Text.rich(
-                                TextSpan(
-                                  children: [
-                                    WidgetSpan(child: Padding(
-                                      padding: EdgeInsets.only(right: 10), // Adjust the spacing here
-                                      child: Icon(Icons.group, color: Colors.pink),
-                                    ),),
-                                    TextSpan(text: 'Your Favourite Author',style: TextStyle(
-                                        color: Colors.pink
-                                    )),
-                                  ],
-                                ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 8, top: 10),
+                          child: Container(
+                            child: Text.rich(
+                              TextSpan(
+                                children: [
+                                  WidgetSpan(
+                                    child: Padding(
+                                      padding: EdgeInsets.only(right: 10),
+                                      // Adjust the spacing here
+                                      child:
+                                          Icon(Icons.group, color: Colors.pink),
+                                    ),
+                                  ),
+                                  TextSpan(
+                                      text: 'Your Favourite Author',
+                                      style: TextStyle(color: Colors.pink,fontWeight: FontWeight.bold,fontSize: 16)),
+                                ],
                               ),
-                              width: double.infinity,
                             ),
+                            width: double.infinity,
                           ),
-                              Expanded(
-                                child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: imageslst.length,
-                                  itemBuilder: (context, index) {
-                                    return Column(
-                                      children: [
-                                        CircleAvatar(
-                                          backgroundImage: NetworkImage(
-                                              "https://appmaking.co/wp-content/uploads/2021/08/appmaking-logo-colored.png"),
-                                          radius: 40,
-                                        ),
-                                        Text("Person$index"),
-                                      ],
-                                    );
-                                  },
-                                ),
-                              ),
-
-
-                          /*ListView.builder(
+                        ),
+                        Expanded(
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
                             itemCount: imageslst.length,
                             itemBuilder: (context, index) {
-                              // Here we return a custom list item widget for each item in the list
-                              return Column(
-                                children: [
-                                Image.network(
-                                  imageslst[index],
-                                ),
-                                  Text(tabTitles[index])
-                                ],
+                              return Container(
+                                padding: EdgeInsets.only(top: 5,left: 5),
+                                child: Column(
 
-                                // Pass image asset path or URL here
+                                  children: [
+                                    CircleAvatar(
+                                backgroundImage: AssetImage("images/newlogo.jpeg"),
+
+                              radius: 40,
+                                    ),
+                                    Text("Person$index"),
+                                  ],
+                                ),
                               );
                             },
-                          ),*/
-
-                        ],
-                      ),
+                          ),
+                        ),
+                      ],
                     ),
-                    Divider(
-                      color: Colors.black12,
-                      thickness: 6,
-                    ),
-                    Container(
-                      height: screenHeight*0.5,
+                  ),
+                  Divider(
+                    color: Colors.black12,
+                    thickness: 6,
+                  ),
+                  Expanded(
+                    child: Container(
+                      height: screenHeight * 0.6,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(30), // Adjust as needed
@@ -229,149 +208,58 @@ class _SearchState extends State<Search> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding:  EdgeInsets.only(left: 8),
-                            child: Container(
-                              child: Text.rich(
-                                TextSpan(
-                                  children: [
-                                    WidgetSpan(child: Padding(
-                                      padding: EdgeInsets.only(right: 10), // Adjust the spacing here
-                                      child: Icon(Icons.video_call_sharp, color: Colors.pink),
-                                    ),),
-                                    TextSpan(text: 'Top Episode',style: TextStyle(
-                                        color: Colors.pink
-                                    )),
-                                  ],
+                            padding: EdgeInsets.only(left: 8),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(padding: EdgeInsets.all(10),child: Text.rich(
+                                    TextSpan(
+                                      children: [
+                                        WidgetSpan(
+                                          child: Padding(
+                                            padding: EdgeInsets.only(right: 10),
+                                            // Adjust the spacing here
+                                            child: Icon(CupertinoIcons.t_bubble,
+                                                color: Colors.pink),
+                                          ),
+                                        ),
+                                        TextSpan(
+                                            text: 'Top Poetries',
+                                            style: TextStyle(color: Colors.pink,fontWeight: FontWeight.bold,fontSize: 16)),
+                                      ],
+                                    ),
+                                  ),
+                                  width: double.infinity,
                                 ),
-                              ),
-                              width: double.infinity,
+                              ],
                             ),
                           ),
                           Expanded(
                             child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: imageslst.length,
+                              scrollDirection: Axis.vertical,
+                              itemCount: 5,
                               itemBuilder: (context, index) {
-                                return
-                                  Container(
-                                    height:screenHeight*0.5 ,
-                                    child: Card(
-                                      color: Colors.black12,
-                                      child:  Column(
-                                        children: [
-                                          Image.asset("images/imagesss.jpg"),
-                                          Text("Person$index"),
-                                        ],
-                                      ),
+                                return Container(
+                                  width: double.infinity,
+                                  child: Card(
+                                    color: Colors.black12,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset("images/imagesss.jpg"),
+                                      ],
                                     ),
-                                  );
-
+                                  ),
+                                );
                               },
                             ),
                           ),
-
                         ],
                       ),
                     ),
-                    Divider(
-                      color: Colors.black12,
-                      thickness: 6,
-                    ),
-                    Container(
-                      height: screenHeight*0.31,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(30), // Adjust as needed
-                          topLeft: Radius.circular(30), // Adjust as needed
-                        ),
-                        color: Colors.white,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding:  EdgeInsets.only(left: 8),
-                            child: Container(
-                              child: Text.rich(
-                                TextSpan(
-                                  children: [
-                                    WidgetSpan(child: Padding(
-                                      padding: EdgeInsets.only(right: 10), // Adjust the spacing here
-                                      child: Icon(Icons.video_call_sharp, color: Colors.pink),
-                                    ),),
-                                    TextSpan(text: 'News',style: TextStyle(
-                                        color: Colors.pink
-                                    )),
-                                  ],
-                                ),
-                              ),
-                              width: double.infinity,
-                            ),
-                          ),
-                          Expanded(
-                            child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: imageslst.length,
-                              itemBuilder: (context, index) {
-                                return
-                                  Container(
-                                    child: Card(
-                                      color: Colors.black12,
-                                      child:  Column(
-                                        children: [
-                                          Image.asset("images/dummyimages.jpg"),
-                                          //Image.network("https://www.pexels.com/photo/green-and-blue-peacock-feather-674010/",),
-                                          Text("Person$index"),
-                                        ],
-                                      ),
-                                    ),
-                                  );
-
-                              },
-                            ),
-                          ),
-
-                        ],
-                      ),
-                    ),
-                  ],
-
-                ),
+                  )
+                ],
               ),
-
-
-
-
-              /*Padding(
-                padding: EdgeInsets.only(top: screenHeight*0.006,left: screenWidth*0.04,right: screenWidth*0.04),
-                child: Container(
-                  child: Container(
-                    child: GridView.builder(
-                      physics: ScrollPhysics(),
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      padding:EdgeInsets.only(top: 30),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 10,
-                        childAspectRatio:0.75,
-                      ),
-                      // return a custom ItemCard
-                      itemBuilder: (context, i) => Container(child: Text(tabTitles[i],style: TextStyle(
-                        color: Colors.white,
-                      ),
-                      ),
-                        color: Colors.blueGrey,
-                        alignment: Alignment.center,
-                        height: screenHeight*0.7,
-                      ),
-                      itemCount: tabTitles.length,
-                    ),
-                  ),),
-              )*/
             ),
           )
         ],
